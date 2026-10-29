@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Notes | Full-Stack Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header with educational badges -->
+    <header class="app-header">
+      <div class="badge-row">
+        <span class="badge badge-fe">Frontend (HTML + JS Fetch)</span>
+        <span class="arrow">⇄</span>
+        <span class="badge badge-be">Backend (Express :5000)</span>
+      </div>
+      <h1>📝 Quick Notes</h1>
+      <p class="subtitle">A beginner-friendly demonstration of HTTP client-server communication.</p>
+    </header>
+
+    <!-- Main Card containing input and notes -->
+    <main class="card">
+      <!-- Input Section (Form to POST new notes) -->
+      <form id="note-form" class="note-form">
+        <label for="note-input" class="sr-only">New note content</label>
+        <input
+          type="text"
+          id="note-input"
+          placeholder="Type a note (e.g. Learn Express & Fetch API)..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="add-btn" class="btn-primary">
+          <span class="btn-text">Add Note</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- Network Status / Feedback Message -->
+      <div id="status-message" class="status-message hidden" role="alert"></div>
+
+      <!-- Notes Display Section -->
+      <section class="notes-section">
+        <div class="section-header">
+          <h2>All Notes</h2>
+          <span id="note-count" class="counter-badge">0 notes</span>
+        </div>
+
+        <!-- Notes List Container -->
+        <ul id="notes-list" class="notes-list" aria-live="polite">
+          <!-- Dynamically populated by app.js using GET /api/notes -->
+        </ul>
+
+        <!-- Empty State (Shown when notes array is empty) -->
+        <div id="empty-state" class="empty-state hidden">
+          <p>No notes found. Type something above and click <strong>Add Note</strong>!</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Interactive Learning Explainer Panel -->
+    <aside class="learning-card">
+      <div class="learning-header">
+        <span class="info-icon">💡</span>
+        <h3>How It Works Behind The Scenes</h3>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Page Load:</strong> Calls <code>fetchNotes()</code> which sends a <code>GET /api/notes</code> HTTP request to the Express backend.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Add Note:</strong> Submitting sends a <code>POST /api/notes</code> with a JSON body <code>{"text": "..."}</code>.
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Live Response:</strong> Express updates its array and responds with the new list, which JavaScript renders instantly in the DOM.
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="app-footer">
+      <p>Backend API listening at <code>http://localhost:5000/api/notes</code></p>
+    </footer>
+  </div>
+
+  <!-- Environment configuration bridge -->
+  <script src="config.js"></script>
+  <!-- JavaScript logic to connect frontend to backend -->
+  <script src="app.js"></script>
+</body>
+</html>
+

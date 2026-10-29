@@ -1,0 +1,12 @@
+# Render Blueprint: Deploys unified Frontend + Backend on Render Free Tier
+services:
+  - type: web
+    name: quick-notes-app
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+

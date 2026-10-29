@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules/
+
+# Environment variable files (contain local configs / secrets)
+.env
+backend/.env
+frontend/.env
+
+# Log files
+*.log
+
